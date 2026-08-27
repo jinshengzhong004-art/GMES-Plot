@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gmes-plot"
+version = "1.2.0"
+description = "重磁电震绘图 Pro - offline geophysical plotting and interpolation desktop application"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "matplotlib>=3.7",
+  "PySide6>=6.7",
+]
+
+[project.optional-dependencies]
+geostat = ["pykrige>=1.7", "pyproj>=3.6"]
+volume = ["vtk>=9.3", "pyvista>=0.44", "pyvistaqt>=0.11"]
+dev = ["pytest>=8", "pytest-qt>=4.4"]
+
+[project.scripts]
+gmes-plot = "gmes_plot.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+gmes_plot = ["assets/*.png", "assets/*.ico"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
